@@ -17,11 +17,18 @@
   <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#132247">
   <meta name="msapplication-TileColor" content="#132247">
   <meta name="theme-color" content="#ffffff">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 
 </head>
 
 <body>
+  {% include 'partials/navbar.html' %}
   {% block body %}{% endblock body %}
+
+  <!-- Bootstrap JS -->
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
 </body>
 
 </html>

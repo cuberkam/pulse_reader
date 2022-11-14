@@ -5,9 +5,9 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from utils.send_mail import send_mail_reset_password
 
 from users.models import ResetPassword
+from utils.send_mail import send_mail_reset_password
 
 from . import forms
 from .models import CustomUser
@@ -34,7 +34,7 @@ def login_user(request):
             request.session.set_expiry(1209600)  # 2 Weeks
 
         login(request, user)
-        return redirect("index")
+        return redirect("feed")
 
     return render(request, "login.html", context)
 
@@ -52,7 +52,7 @@ def register(request):
         new_user.save()
         login(request, new_user)
 
-        return redirect("index")
+        return redirect("feed")
 
     elif form.errors != {}:
         form_errors = form.non_field_errors().as_text()
@@ -64,7 +64,7 @@ def register(request):
 @login_required
 def logout_user(request):
     logout(request)
-    return redirect("index")
+    return redirect("login")
 
 
 def forgot_password(request):
@@ -108,7 +108,7 @@ def reset_password(request, pk):
 
                 reset_password_instance.delete()
 
-                return redirect("index")
+                return redirect("login")
 
             elif form.errors != {}:
                 form_errors = form.non_field_errors().as_text()
@@ -121,4 +121,4 @@ def reset_password(request, pk):
         reset_password_instance.delete()
 
     messages.error(request, "This link has expired or has been used.")
-    return redirect("index")
+    return redirect("login")

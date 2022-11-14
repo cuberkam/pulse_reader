@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Login | Pulse Reader{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-center mt-3">
+    <div class="col-4">
+      <div class="card border-color-secondary">
+        <div class="card-header border-color-secondary bg-color-secondary color-primary">
+          LOGIN
+        </div>
+        <div class="card-body rounded-bottom bg-color-primary">
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-2">
+              <label for="InputEmail">Email</label>
+              {{form.email}}
+            </div>
+            <div class="form-group mb-2">
+              <label for="InputPassword">Password</label>
+              {{form.password}}
+              <!-- <a href="#" class="a-text">Forget my password</a> -->
+            </div>
+            <div class="form-group form-check mb-2">
+              {{form.rememberme}}
+              <label class="form-check-label" for="rememberme">Remember Me</label>
+            </div>
+            <button class="btn button-secondary" style="height: auto;">LOGIN</button>
+          </form>
+          <div class="mt-2">
+            <a href="{% url 'forgot_password' %}" class="a-link">Forgot your password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
