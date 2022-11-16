@@ -1,0 +1,77 @@
+<div id="feeds" class="row justify-content-center m-0 p-0">
+  <section class="col-4 bg-color-primary my-2 ms-2 p-5 border-color-secondary">
+
+    <form hx-put="{% url 'subscribe_rss' %}" hx-target="#feeds">
+      {% csrf_token %}
+      <div class="row g-2 align-items-center">
+        <div class="col-auto">
+          <input type="text" class="form-control mb-2" placeholder="Subscribe RSS" name="rss_url">
+        </div>
+
+        <div class="col-auto mt-0">
+          <button id="subscribe" class="btn button-secondary" type="submit">
+            <span>SUBSCRIBE</span>
+          </button>
+        </div>
+    </form>
+
+    {% for data in all_feeds %}
+    <div class="border-color-secondary bg-color-secondary color-primary p-2 mt-2">
+      <div class="row align-items-center">
+
+        <div class="col-6">
+          <span class="ms-2">{{ data.title }}</span>
+        </div>
+
+        <div class="col-6">
+          <div class="float-end">
+            <a class="btn button-primary" href="{{ data.link }}" target="_blank">
+              <span>OPEN</span>
+            </a>
+            <button class="btn button-red">
+              <span>UNSUBSCRIBE</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </section>
+
+  <section class="col-7 bg-color-primary m-2 p-5 border-color-secondary">
+    <div class="container">
+      {% for data in all_entries %}
+      <div class="card my-2 border-color-secondary">
+        <div class="card-header border-color-secondary bg-color-secondary color-primary">
+          {{ data.feed }}
+        </div>
+
+        <div class="card-body bg-color-primary">
+          <h2>{{ data.title }}</h2>
+          {% autoescape off %}
+          {{ data.image }}
+          {% endautoescape %}
+          <p>{{ data.text }}</p>
+        </div>
+
+        <div class="card-footer bg-color-secondary color-primary">
+          <div class="row align-items-center">
+            <div class="col-6">
+              <p>{{ data.published }}</p>
+            </div>
+            <div class="col-6">
+              <div class="float-end">
+                <a class="btn button-primary" href="{{ data.link }}" target="_blank">
+                  <span>OPEN</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>

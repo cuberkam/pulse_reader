@@ -3,6 +3,9 @@
     --primary-shadow-color: #BDC7AE;
     --secondary-color: #132247;
     --secondary-shadow-color: #263553;
+    --red: #DABABA;
+    --red-shadow: #C7AEAE;
+
 }
 
 body {
@@ -27,14 +30,24 @@ body {
 }
 
 .border-color-secondary {
-    border: 1rem;
+    border: 2px solid;
     border-color: var(--secondary-color) !important;
+    border-radius: 1rem;
 }
 
 .navbar-item:hover,
 .navbar-item:focus {
     background-color: var(--primary-color);
     color: var(--secondary-color) !important;
+}
+
+.button-primary {
+    color: var(--secondary-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
+.button-primary:hover {
+    background-color: var(--primary-shadow-color) !important;
 }
 
 .button-secondary {
@@ -44,4 +57,13 @@ body {
 
 .button-secondary:hover {
     background-color: var(--secondary-shadow-color) !important;
+}
+
+.button-red {
+    color: var(--secondary-color) !important;
+    background-color: var(--red) !important;
+}
+
+.button-red:hover {
+    background-color: var(--red-shadow) !important;
 }

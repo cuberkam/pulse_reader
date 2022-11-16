@@ -19,6 +19,8 @@
   <meta name="theme-color" content="#ffffff">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  <!-- HTMX JS 1.8.4 -->
+  <script src="{% static 'js/htmx.min.js' %}"></script>
 
 </head>
 
@@ -29,6 +31,12 @@
   <!-- Bootstrap JS -->
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>
+
+  <script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+      event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+  </script>
 </body>
 
 </html>
